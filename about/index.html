@@ -65,7 +65,7 @@
       position: relative;
       z-index: 2;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       padding: var(--pad-y) var(--pad-x);
       margin-bottom: var(--pad-y)
@@ -146,6 +146,11 @@
         --pad-x: clamp(20px, 4vw, 40px);
       }
 
+      .topbar {
+       margin-top: var(--pad-x);
+       margin: var(--pad-y) var(--pad-y) 0 10px
+      }
+      
       .menu__label,
       .menu__toggle {
         display: none;
