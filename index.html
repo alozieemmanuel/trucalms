@@ -51,7 +51,7 @@
       position: relative;
       width: 100%;
       height: 100vh;
-      height: 100dvh; 
+      height: 100dvh;
       min-height: 640px;
       overflow: hidden;
       color: var(--white);
@@ -180,11 +180,6 @@
         --pad-x: clamp(20px, 4vw, 40px)
       }
 
-      .topbar {
-       margin-top: var(--pad-x);
-       margin: var(--pad-y) var(--pad-y) 0 10px
-      }
-
       .hero__content {
         padding-right: 16px;
       }
@@ -238,7 +233,7 @@
       top: 0;
       right: -100%;
       height: 100vh;
-      height: 100dvh; 
+      height: 100dvh;
       width: min(340px, 86vw);
       background: #14110f;
       color: #fff;
@@ -497,6 +492,11 @@
       color: #948d82;
     }
 
+    @media (max-width: 640px) {
+      .welcome__video {
+        aspect-ratio: 4 / 3.4;
+      }
+    }
     /* ================================================================
      Next section — About (inserted as 2nd section, right after hero)
      ================================================================ */
@@ -666,7 +666,7 @@
       grid-template-columns: 1fr 1.1fr;
       gap: clamp(32px, 5vw, 56px);
       align-items: center;
-    } 
+    }
 
     .spotlight__name {
       font-weight: 700;
@@ -1107,11 +1107,11 @@
       }
     }
 
-  /* ================================================================
+    /* ================================================================
    Testimonials — stories from the church family
    ================================================================ */
 
-   .testimonials {
+    .testimonials {
       background: #fff;
       padding: clamp(64px, 10vw, 120px) var(--pad-x);
     }
@@ -1170,7 +1170,11 @@
       box-shadow: 0 10px 24px rgba(217, 114, 15, 0.28);
       transition: filter .15s ease, transform .15s ease;
     }
-    .testimonials__btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+    .testimonials__btn:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
 
     .testimonials__slider {
       overflow: hidden;
@@ -1184,17 +1188,25 @@
       width: max-content;
       animation: testimonialsSlide 36s linear infinite;
     }
+
     .testimonials__slider:hover .testimonials__track {
       animation-play-state: paused;
     }
 
     @keyframes testimonialsSlide {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .testimonials__track { animation: none; }
+      .testimonials__track {
+        animation: none;
+      }
     }
 
     .testimony {
@@ -1224,6 +1236,7 @@
       font-weight: 700;
       color: #14110f;
     }
+
     .testimony__role {
       display: block;
       font-size: 0.82rem;
@@ -1232,14 +1245,16 @@
     }
 
     @media (max-width: 860px) {
-      .testimonials__btn { width: 100%; }
+      .testimonials__btn {
+        width: 100%;
+      }
     }
 
-     /* ================================================================
+    /* ================================================================
    Let's Connect — newcomer / contact form
    ================================================================ */
 
-   .connect {
+    .connect {
       background: #F6F4EF;
       padding: clamp(48px, 8vw, 80px) var(--pad-x) clamp(64px, 10vw, 100px);
     }
@@ -1468,7 +1483,8 @@
     <div class="hero__scrim"></div>
 
     <div class="topbar">
-      <a href="/"><img src="https://www.cbcnigeria.org/logo-white.png" alt="Calvary Bible Church" width="auto" height="50px"></a>
+      <a href="/"><img src="https://www.cbcnigeria.org/logo-white.png" alt="Calvary Bible Church" width="auto"
+          height="50px"></a>
       <div class="menu" id="menuToggle" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false"
         aria-controls="navDrawer">
         <span class="menu__label">Menu</span>
@@ -1725,38 +1741,44 @@
       <div class="testimonials__track">
         <div class="testimony">
           <p class="testimony__mark">&ldquo;</p>
-          <p class="testimony__quote">We walked in as strangers and walked out feeling like we'd found family. That hasn't changed in three years.</p>
+          <p class="testimony__quote">We walked in as strangers and walked out feeling like we'd found family. That
+            hasn't changed in three years.</p>
           <span class="testimony__name">Marie Thibault</span>
           <span class="testimony__role">Member since 2022</span>
         </div>
         <div class="testimony">
           <p class="testimony__mark">&ldquo;</p>
-          <p class="testimony__quote">The kids' ministry team knows my children by name. That kind of care is rare, and it's why we stay.</p>
+          <p class="testimony__quote">The kids' ministry team knows my children by name. That kind of care is rare, and
+            it's why we stay.</p>
           <span class="testimony__name">David &amp; Priya Osei</span>
           <span class="testimony__role">Parents of three</span>
         </div>
         <div class="testimony">
           <p class="testimony__mark">&ldquo;</p>
-          <p class="testimony__quote">I came for one service out of curiosity. Two years later, I'm leading a community group of my own.</p>
+          <p class="testimony__quote">I came for one service out of curiosity. Two years later, I'm leading a community
+            group of my own.</p>
           <span class="testimony__name">Samuel Nguyen</span>
           <span class="testimony__role">Community Group Leader</span>
         </div>
         <!-- duplicate set for seamless loop -->
         <div class="testimony" aria-hidden="true">
           <p class="testimony__mark">&ldquo;</p>
-          <p class="testimony__quote">We walked in as strangers and walked out feeling like we'd found family. That hasn't changed in three years.</p>
+          <p class="testimony__quote">We walked in as strangers and walked out feeling like we'd found family. That
+            hasn't changed in three years.</p>
           <span class="testimony__name">Marie Thibault</span>
           <span class="testimony__role">Member since 2022</span>
         </div>
         <div class="testimony" aria-hidden="true">
           <p class="testimony__mark">&ldquo;</p>
-          <p class="testimony__quote">The kids' ministry team knows my children by name. That kind of care is rare, and it's why we stay.</p>
+          <p class="testimony__quote">The kids' ministry team knows my children by name. That kind of care is rare, and
+            it's why we stay.</p>
           <span class="testimony__name">David &amp; Priya Osei</span>
           <span class="testimony__role">Parents of three</span>
         </div>
         <div class="testimony" aria-hidden="true">
           <p class="testimony__mark">&ldquo;</p>
-          <p class="testimony__quote">I came for one service out of curiosity. Two years later, I'm leading a community group of my own.</p>
+          <p class="testimony__quote">I came for one service out of curiosity. Two years later, I'm leading a community
+            group of my own.</p>
           <span class="testimony__name">Samuel Nguyen</span>
           <span class="testimony__role">Community Group Leader</span>
         </div>
@@ -1793,7 +1815,8 @@
   <footer class="site-footer">
     <div class="section-inner footer__top">
       <div class="footer__brand">
-        <a href="/"><img src="https://www.cbcnigeria.org/logo-white.png" alt="Calvary Bible Church" width="120px" height="auto"></a>
+        <a href="/"><img src="https://www.cbcnigeria.org/logo-white.png" alt="Calvary Bible Church" width="120px"
+            height="auto"></a>
         <p>Followers of Jesus equipping others to be followers of Jesus. Come as you are.</p>
       </div>
       <div class="footer__col">
