@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="https://www.cbcnigeria.org/icon.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calvary Bible Church - The Turning Point</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --pad-x: clamp(60px, 4vw, 40px);
+      --pad-y: clamp(20px, 4vw, 40px);
+      --white: #ffffff;
+      --overlay-top: rgba(10, 10, 10, 0.05);
+      --overlay-bottom: rgba(8, 8, 8, 0.62);
+
+      --brand-orange: #F7941D;
+      --brand-orange-light: #FBB03B;
+      --brand-orange-dark: #D9720F;
+      --brand-gradient: linear-gradient(135deg, var(--brand-orange), var(--brand-orange-light));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #000;
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      z-index: 0;
+    }
+
+    .hero__scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, var(--overlay-top) 0%, rgba(0, 0, 0, 0.15) 40%, var(--overlay-bottom) 100%);
+      z-index: 1;
+    }
+
+    /* ---------- Top bar ---------- */
+    .topbar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: var(--pad-y) var(--pad-x);
+    }
+
+    .logo {
+      width: auto;
+      height: 50px;
+      display: block;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: capitalize;
+    }
+
+    .menu__toggle {
+      width: 40px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      position: relative;
+    }
+
+    .menu__toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    /* ---------- Bottom content ---------- */
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      padding: var(--pad-y) var(--pad-x) clamp(48px, 8vw, 76px);
+    }
+
+    .headline {
+      margin: 0 0 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.06;
+      font-size: clamp(2.1rem, 4vw, 3.6rem);
+      max-width: 760px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 26px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: opacity .15s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .btn--solid {
+      background: var(--brand-gradient);
+      color: #fff;
+    }
+
+    /* ---------- Next steps badge ---------- */
+    .next-steps {
+      position: absolute;
+      right: var(--pad-x);
+      bottom: var(--pad-y);
+      z-index: 3;
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: rgba(20, 17, 15, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(2px);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --pad-x: clamp(20px, 4vw, 40px)
+      }
+
+      .next-steps {
+        width: 68px;
+        height: 68px;
+        font-size: 0.62rem;
+        right: 16px;
+        bottom: 16px;
+      }
+
+      .hero__content {
+        padding-right: 16px;
+      }
+
+      .cta-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* ================================================================
+     Slide-in menu — additive only, nothing above this line was changed
+     ================================================================ */
+
+    .menu {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .menu__toggle.is-active {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .menu__toggle.is-active::after {
+      left: 22px;
+      /* 40 (track) - 16 (knob) - 2 (inset) */
+    }
+
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 8, 8, 0.55);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s ease;
+      z-index: 40;
+    }
+
+    .nav-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100vh;
+      width: min(340px, 86vw);
+      background: #14110f;
+      color: #fff;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      padding: var(--pad-y) var(--pad-x);
+      transition: right .4s cubic-bezier(.16, .8, .24, 1);
+      box-shadow: -20px 0 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .nav-drawer.is-open {
+      right: 0;
+    }
+
+    .nav-drawer__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-drawer__brand {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      opacity: 0.85;
+    }
+
+    .nav-drawer__close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: transparent;
+      color: #fff;
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s ease;
+    }
+
+    .nav-drawer__close:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .nav-drawer__list {
+      list-style: none;
+      margin: clamp(36px, 8vh, 64px) 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .nav-drawer__list a {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      opacity: 0.92;
+      transition: opacity .15s ease, transform .15s ease;
+    }
+
+    .nav-drawer__list a:hover {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    .nav-drawer__footer {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .nav-drawer__footer .btn {
+      width: 100%;
+    }
+
+    body.nav-open {
+      overflow: hidden;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .nav-drawer,
+      .nav-overlay {
+        transition: none;
+      }
+    }
+
+    /* ================================================================
+     Hamburger for mobile — replaces the toggle-switch look at
+     narrow widths, same #menuToggle element, same click handlers
+     ================================================================ */
+
+    .menu__hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 26px;
+      height: 20px;
+    }
+
+    .menu__hamburger .bar {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform .3s ease, opacity .3s ease;
+    }
+
+    .menu[aria-expanded="true"] .menu__hamburger .bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu[aria-expanded="true"] .menu__hamburger .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu[aria-expanded="true"] .menu__hamburger .bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    @media (max-width: 780px) {
+
+      .menu__label,
+      .menu__toggle {
+        display: none;
+      }
+
+      .menu__hamburger {
+        display: flex;
+      }
+    }
+
+    /* ================================================================
+     Welcome to Trucalm — video welcome from the Pastors
+     ================================================================ */
+
+    .welcome {
+      background: #F1EFEA;
+      padding: clamp(64px, 10vw, 120px) var(--pad-x);
+    }
+
+    .welcome__inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .welcome__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brand-orange);
+      margin: 0 0 18px;
+    }
+
+    .welcome__eyebrow::before,
+    .welcome__eyebrow::after {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: var(--brand-orange);
+    }
+
+    .welcome__title {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0 0 20px;
+      color: #14110f;
+    }
+
+    .welcome__desc {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: #5c574f;
+      max-width: 720px;
+      margin: 0 auto clamp(36px, 6vw, 52px);
+    }
+
+    .welcome__video {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 20 / 9;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #14110f;
+      box-shadow: 0 24px 60px rgba(20, 17, 15, 0.16);
+      cursor: pointer;
+    }
+
+    .welcome__video iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .welcome__poster {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    .welcome__poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .welcome__poster::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(20, 17, 15, 0.15) 0%, rgba(20, 17, 15, 0.5) 100%);
+    }
+
+    .welcome__play {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .welcome__play span {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: var(--brand-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 30px rgba(217, 114, 15, 0.4);
+      transition: transform .2s ease;
+    }
+
+    .welcome__play:hover span {
+      transform: scale(1.08);
+    }
+
+    .welcome__play svg {
+      margin-left: 4px;
+    }
+
+    .welcome__video.is-playing .welcome__poster,
+    .welcome__video.is-playing .welcome__play {
+      display: none;
+    }
+
+    .welcome__caption {
+      margin: 20px 0 0;
+      font-size: 0.88rem;
+      color: #948d82;
+    }
+
+    /* ================================================================
+     Next section — About (inserted as 2nd section, right after hero)
+     ================================================================ */
+
+    .about {
+      background: #fff;
+      color: #14110f;
+      padding: clamp(64px, 10vw, 120px) var(--pad-x);
+    }
+
+    .about__top {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 0 clamp(48px, 7vw, 76px);
+    }
+
+    .about__mark {
+      font-weight: 800;
+      font-size: 3.2rem;
+      line-height: 1;
+      color: var(--brand-orange);
+    }
+
+    .about__quote {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.18;
+      font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+      margin: 0 0 20px;
+    }
+
+    .about__desc {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #5c574f;
+      margin: 0 0 28px;
+      max-width: 640px;
+    }
+
+    .about__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 30px;
+      background: #F1EFEA;
+      color: #14110f;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(20, 17, 15, 0.08);
+      transition: box-shadow .15s ease, transform .15s ease;
+    }
+
+    .about__btn:hover {
+      box-shadow: 0 8px 22px rgba(20, 17, 15, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .about__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(16px, 2.5vw, 24px);
+    }
+
+    .about__card {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      border-radius: 14px;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    .about__card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .about__card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 30%, rgba(0, 0, 0, 0.75) 100%);
+      z-index: 1;
+    }
+
+    .about__card-body {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(18px, 3vw, 26px);
+    }
+
+    .about__card-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .about__card-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      line-height: 1.2;
+      margin: 0 0 8px;
+    }
+
+    .about__card-desc {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.75);
+      margin: 0;
+    }
+
+    @media (max-width: 780px) {
+      .about__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about__top {
+        grid-template-columns: 32px 1fr;
+      }
+
+      .about__mark {
+        font-size: 2.4rem;
+      }
+    }
+
+
+    /* ================================================================
+   Meet the Leadership — single spotlight card
+   ================================================================ */
+
+    .leadership {
+      background: #fff;
+      padding: 0 var(--pad-x) 0px;
+    }
+
+    .leadership__head {
+      max-width: 640px;
+      margin: 0 0 clamp(40px, 6vw, 60px);
+    }
+
+    .leadership__title {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0;
+    }
+
+    .spotlight {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: #F1EFEA;
+      border-radius: 20px;
+      padding: clamp(32px, 5vw, 56px);
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(32px, 5vw, 56px);
+      align-items: center;
+    } 
+
+    .spotlight__name {
+      font-weight: 700;
+      font-size: clamp(1.4rem, 2.2vw, 1.7rem);
+      color: #14110f;
+      margin: 0 0 20px;
+    }
+
+    .spotlight__bio {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: #5c574f;
+      margin: 0 0 16px;
+    }
+
+    .spotlight__more {
+      display: none;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--brand-orange);
+      cursor: pointer;
+      margin: 0 0 28px;
+    }
+
+    @media (max-width: 780px) {
+      .leadership {
+        padding: 0 var(--pad-x) clamp(64px, 10vw, 100px);
+      }
+
+      .spotlight__bio {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+
+      .spotlight__bio.is-expanded {
+        -webkit-line-clamp: unset;
+        line-clamp: unset;
+        overflow: visible;
+      }
+
+      .spotlight__more {
+        display: block;
+      }
+
+      .spotlight__btn {
+        width: 100%;
+      }
+    }
+
+    .spotlight__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 30px;
+      background: #fff;
+      color: #14110f;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(20, 17, 15, 0.08);
+      transition: box-shadow .15s ease, transform .15s ease;
+    }
+
+    .spotlight__btn:hover {
+      box-shadow: 0 8px 22px rgba(20, 17, 15, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .spotlight__photo {
+      aspect-ratio: 4 / 4.2;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #ECEAE4;
+    }
+
+    .spotlight__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 780px) {
+      .spotlight {
+        grid-template-columns: 1fr;
+      }
+
+      .spotlight__photo {
+        order: -1;
+        aspect-ratio: 4/3;
+      }
+
+      .spotlight__photo img {
+        object-position: center 15%;
+      }
+    }
+
+    /* ================================================================
+     Next section — Worship With Us  (ticket-stub design)
+     ================================================================ */
+
+    .worship {
+      background: #fff;
+      color: #14110f;
+      padding: clamp(64px, 10vw, 120px) var(--pad-x);
+    }
+
+    .worship__head {
+      max-width: 640px;
+      margin: 0 0 clamp(48px, 7vw, 76px);
+    }
+
+    .worship__title {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0;
+    }
+
+    /* ================================================================
+   Worship With Us — redesign
+   ================================================================ */
+
+    .worship__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 3vw, 28px);
+      padding: 8px 0 24px;
+    }
+
+    .wcard {
+      position: relative;
+      background: #FCFBF8;
+      border: 1px solid rgba(20, 17, 15, 0.1);
+      border-radius: 16px;
+      padding: clamp(28px, 3vw, 34px) clamp(24px, 3vw, 28px);
+      box-shadow: 0 10px 28px rgba(20, 17, 15, 0.05);
+      transition: box-shadow .2s ease, transform .2s ease;
+    }
+
+    .wcard:hover {
+      box-shadow: 0 18px 40px rgba(20, 17, 15, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .wcard__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(247, 148, 29, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .wcard__name {
+      font-weight: 700;
+      font-size: 1.15rem;
+      line-height: 1.3;
+      color: #14110f;
+      margin: 0 0 8px;
+    }
+
+    .wcard__desc {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #6b6560;
+      margin: 0 0 24px;
+    }
+
+    .wcard__meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding-top: 18px;
+      border-top: 1px solid rgba(20, 17, 15, 0.1);
+    }
+
+    .wcard__time {
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: -0.01em;
+      color: var(--brand-orange);
+    }
+
+    .wcard__day {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #948d82;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 780px) {
+      .worship__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ticket {
+      width: 260px;
+      max-width: 100%;
+      background: #FCFBF8;
+      border: 1px solid rgba(20, 17, 15, 0.14);
+      border-radius: 12px;
+      box-shadow: 0 16px 34px rgba(20, 17, 15, 0.07);
+    }
+
+    .ticket--a {
+      transform: rotate(-2deg);
+      margin-top: 0;
+    }
+
+    .ticket--b {
+      transform: rotate(1.6deg);
+      margin-top: 26px;
+    }
+
+    .ticket--c {
+      transform: rotate(-1.2deg);
+      margin-top: 8px;
+    }
+
+    .ticket__name {
+      padding: 22px 20px 18px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      line-height: 1.3;
+    }
+
+    .ticket__perf {
+      border-top: 2px dashed rgba(20, 17, 15, 0.18);
+      margin: 0 18px;
+    }
+
+    .ticket__time {
+      padding: 18px 20px 22px;
+      text-align: center;
+    }
+
+    .ticket__time .clock {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--brand-orange);
+      margin-bottom: 4px;
+    }
+
+    .ticket__time .day {
+      display: block;
+      font-size: 0.88rem;
+      color: #6b6560;
+    }
+
+    @media (max-width: 700px) {
+
+      .ticket--a,
+      .ticket--b,
+      .ticket--c {
+        transform: none;
+        margin-top: 0;
+      }
+    }
+
+    /* ================================================================
+     Next section — Find Us
+     ================================================================ */
+
+    .findus {
+      padding: clamp(48px, 8vw, 80px) var(--pad-x);
+    }
+
+    .findus__card {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: #F3E9D2;
+      border-radius: 20px;
+      padding: clamp(32px, 5vw, 56px);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: clamp(24px, 4vw, 40px);
+    }
+
+    .findus__addr {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      font-size: clamp(1.4rem, 2.6vw, 2rem);
+      color: #14110f;
+      margin: 0 0 20px;
+    }
+
+    .findus__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #14110f;
+      text-decoration: none;
+      border-bottom: 1px solid #14110f;
+      padding-bottom: 2px;
+    }
+
+    .findus__link:hover {
+      opacity: 0.7;
+    }
+
+    .findus__art {
+      display: flex;
+      justify-content: center;
+    }
+
+    .findus__art svg {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+    }
+
+    @media (max-width: 780px) {
+      .findus__card {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+
+      .findus__art {
+        order: -1;
+        max-width: 200px;
+        margin: 0 auto;
+      }
+    }
+
+    /* ================================================================
+     Next section — Submit Prayer Request
+     ================================================================ */
+
+    .prayer {
+      background: #F6F4EF;
+      padding: clamp(48px, 8vw, 80px) var(--pad-x) clamp(64px, 10vw, 100px);
+    }
+
+    .prayer__card {
+      position: relative;
+      max-width: 1280px;
+      margin: 0 auto;
+      background: #fff;
+      border: 2px dashed rgba(247, 148, 29, 0.4);
+      border-radius: 20px;
+      padding: clamp(32px, 5vw, 56px);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: clamp(24px, 4vw, 40px);
+      overflow: hidden;
+    }
+
+    .prayer__dot {
+      width: 60px;
+      height: 60px;
+      border: 2px dashed rgba(247, 148, 29, 0.4);
+      border-radius: 50%;
+      margin-bottom: 28px;
+    }
+
+    .prayer__title {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      margin: 0 0 16px;
+      color: #14110f;
+    }
+
+    .prayer__desc {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: #5c574f;
+      margin: 0 0 28px;
+      max-width: 480px;
+    }
+
+    .prayer__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 30px;
+      background: var(--brand-gradient);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 10px 24px rgba(217, 114, 15, 0.3);
+      transition: filter .15s ease, transform .15s ease;
+    }
+
+    .prayer__btn:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .prayer__art {
+      aspect-ratio: 4/3;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .prayer__art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 780px) {
+      .prayer__card {
+        grid-template-columns: 1fr;
+      }
+
+      .prayer__art {
+        order: -1;
+        aspect-ratio: 16/9;
+      }
+    }
+
+  /* ================================================================
+   Testimonials — stories from the church family
+   ================================================================ */
+
+   .testimonials {
+      background: #fff;
+      padding: clamp(64px, 10vw, 120px) var(--pad-x);
+    }
+
+    .testimonials__head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: 1280px;
+      margin: 0 auto clamp(48px, 7vw, 76px);
+    }
+
+    .testimonials__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brand-orange);
+      margin: 0 0 18px;
+    }
+
+    .testimonials__eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--brand-orange);
+    }
+
+    .testimonials__title {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0;
+      max-width: 560px;
+    }
+
+    .testimonials__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 28px;
+      background: var(--brand-gradient);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: 999px;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 10px 24px rgba(217, 114, 15, 0.28);
+      transition: filter .15s ease, transform .15s ease;
+    }
+    .testimonials__btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+    .testimonials__slider {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+
+    .testimonials__track {
+      display: flex;
+      gap: clamp(24px, 4vw, 40px);
+      width: max-content;
+      animation: testimonialsSlide 36s linear infinite;
+    }
+    .testimonials__slider:hover .testimonials__track {
+      animation-play-state: paused;
+    }
+
+    @keyframes testimonialsSlide {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .testimonials__track { animation: none; }
+    }
+
+    .testimony {
+      flex: none;
+      width: min(380px, 82vw);
+      padding-top: 26px;
+      border-top: 1px solid rgba(20, 17, 15, 0.12);
+    }
+
+    .testimony__mark {
+      font-weight: 800;
+      font-size: 2.4rem;
+      line-height: 1;
+      color: var(--brand-orange);
+      margin: 0 0 10px;
+    }
+
+    .testimony__quote {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #3b3733;
+      margin: 0 0 20px;
+    }
+
+    .testimony__name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #14110f;
+    }
+    .testimony__role {
+      display: block;
+      font-size: 0.82rem;
+      color: #948d82;
+      margin-top: 2px;
+    }
+
+    @media (max-width: 860px) {
+      .testimonials__btn { width: 100%; }
+    }
+
+     /* ================================================================
+   Let's Connect — newcomer / contact form
+   ================================================================ */
+
+   .connect {
+      background: #F6F4EF;
+      padding: clamp(48px, 8vw, 80px) var(--pad-x) clamp(64px, 10vw, 100px);
+    }
+
+    .connect__card {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(20, 17, 15, 0.06);
+      padding: clamp(32px, 5vw, 56px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 56px);
+      align-items: start;
+    }
+
+    .connect__eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brand-orange);
+      margin: 0 0 18px;
+    }
+
+    .connect__eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--brand-orange);
+    }
+
+    .connect__title {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      margin: 0 0 16px;
+      color: #14110f;
+    }
+
+    .connect__desc {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: #5c574f;
+      margin: 0;
+      max-width: 420px;
+    }
+
+    .connect__form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .connect__field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .connect__field label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #948d82;
+    }
+
+    .connect__field input,
+    .connect__field textarea {
+      font-family: inherit;
+      font-size: 0.95rem;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(20, 17, 15, 0.16);
+      background: #FCFBF8;
+      color: #14110f;
+    }
+
+    .connect__field input:focus,
+    .connect__field textarea:focus {
+      outline: none;
+      border-color: var(--brand-orange);
+    }
+
+    .connect__field textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .connect__submit {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 30px;
+      background: var(--brand-gradient);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(217, 114, 15, 0.3);
+      transition: filter .15s ease, transform .15s ease;
+    }
+
+    .connect__submit:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 780px) {
+      .connect__card {
+        grid-template-columns: 1fr;
+      }
+
+      .connect__submit {
+        width: 100%;
+      }
+    }
+
+    /* ================================================================
+     Footer
+     ================================================================ */
+
+    .site-footer {
+      background: #0c0a09;
+      color: rgba(255, 255, 255, 0.8);
+      padding: clamp(48px, 7vw, 72px) var(--pad-x) clamp(24px, 4vw, 32px);
+    }
+
+    .footer__top {
+      display: grid;
+      grid-template-columns: 1.3fr repeat(3, 1fr);
+      gap: clamp(28px, 4vw, 48px);
+      padding-bottom: clamp(32px, 5vw, 48px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer__brand .logo {
+      width: 34px;
+      height: 34px;
+    }
+
+    .footer__brand p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.55);
+      max-width: 260px;
+      margin: 0;
+    }
+
+    .footer__col h4 {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin: 0 0 16px;
+    }
+
+    .footer__col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__col a {
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+
+    .footer__col a:hover {
+      opacity: 0.7;
+    }
+
+    .footer__bottom {
+      padding-top: clamp(20px, 3vw, 28px);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    @media (max-width: 780px) {
+      .footer__top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer__top {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <video class="hero__video" autoplay muted loop playsinline
+      poster="https://images.unsplash.com/photo-1600288480699-0b0d8a456dd8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+      <source src="" type="video/mp4">
+    </video>
+    <div class="hero__scrim"></div>
+
+    <div class="topbar">
+      <a href="/"><img src="https://www.cbcnigeria.org/logo-white.png" alt="Calvary Bible Church" width="auto" height="50px"></a>
+      <div class="menu" id="menuToggle" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false"
+        aria-controls="navDrawer">
+        <span class="menu__label">Menu</span>
+        <span class="menu__toggle"></span>
+        <span class="menu__hamburger" aria-hidden="true">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="hero__content">
+      <p class="eyebrow">Calvary Bible Church</p>
+      <h1 class="headline">Raising a People of Power, Purpose & Dominion.</h1>
+      <div class="cta-row">
+        <a href="https://www.youtube.com/@cbcnigeria6960/streams" class="btn btn--outline">Watch Live</a>
+        <a href="#connect" class="btn btn--solid">I'm New</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="welcome">
+    <div class="welcome__inner">
+      <h2 class="welcome__title">Welcome to the Trucalms Family</h2>
+      <p class="welcome__desc">A personal welcome from our General Overseer, Pastor Olumide Emmanuel, and his wife,
+        Pastor Mrs. Adenike Olumide-Emmanuel, on what it means to belong to the Trucalms family, and why raising up the
+        next generation of spiritual leaders is at the heart of everything we do.</p>
+
+      <div class="welcome__video" id="welcomeVideo" data-video-id="SZvLTS7hAlU">
+        <div class="welcome__poster">
+          <img src="https://img.youtube.com/vi/SZvLTS7hAlU/maxresdefault.jpg" alt="Welcome video thumbnail">
+        </div>
+        <button type="button" class="welcome__play" id="welcomePlay" aria-label="Play welcome video">
+          <span>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 4.5v15l14-7.5-14-7.5Z" fill="white" />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <p class="welcome__caption">Pastor Olumide Emmanuel &amp; Pastor Mrs. Adenike Olumide-Emmanuel</p>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="section-inner">
+      <div class="about__top">
+        <span class="about__mark">&ldquo;</span>
+        <div>
+          <h2 class="about__quote">Calvary Bible Church is a Christ-centered family, rooted in love for God and
+            people.</h2>
+          <p class="about__desc">Here in Canada, we are overwhelmed by the grace we've found in Jesus. We're worshippers
+            at heart, lovers of the local church, and carriers of a mission to see His Kingdom come and His will be
+            done, right here in our own city, and to the ends of the earth.</p>
+          <a href="/about" class="about__btn">Learn More</a>
+        </div>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__card">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPPn29LalkqfaOl89Yid0C6yYHI462ETAo0bQsH1vmemHXexnLYkAi9qA&s=10"
+            alt="">
+          <div class="about__card-body">
+            <svg class="about__card-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="8" width="28" height="26" rx="2" stroke="white" stroke-width="1.8" />
+              <path d="M20 14v10M15 19h10" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            <div>
+              <h3 class="about__card-title">Bible Centered Teaching</h3>
+              <p class="about__card-desc">Every message is grounded in scripture, practical, clear, and easy to
+                carry into everyday life.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__card">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUBZr-XS4KhstOlfH6rPqE1B_qKbu8H4Cv7zql0aX8m23PV6wv6zMcogc&s=10"
+            alt="">
+          <div class="about__card-body">
+            <svg class="about__card-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="14" cy="14" r="5" stroke="white" stroke-width="1.8" />
+              <circle cx="27" cy="16" r="4" stroke="white" stroke-width="1.8" />
+              <path d="M6 32c1-6 6-9 12-9s11 3 12 9" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+              <path d="M24 24c4 0 8 2 9 8" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            <div>
+              <h3 class="about__card-title">Loving Community</h3>
+              <p class="about__card-desc">Small groups and Sunday gatherings where people actually know your name.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__card">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi8ESAQc7gX3HOc8cykbsxU5-ClhVRJ0pEko3y2xRyzQaP3_xItouWI4s&s=10"
+            alt="">
+          <div class="about__card-body">
+            <svg class="about__card-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 24c4-3 8-3 11 0l3 3" stroke="white" stroke-width="1.8" stroke-linecap="round" />
+              <rect x="22" y="10" width="12" height="10" rx="1.5" stroke="white" stroke-width="1.8" />
+              <path d="M22 14h12M28 10v10" stroke="white" stroke-width="1.8" />
+            </svg>
+            <div>
+              <h3 class="about__card-title">Impactful Outreach</h3>
+              <p class="about__card-desc">Practical care for our neighbors, and partnerships that carry hope beyond our
+                own city.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="leadership">
+    <div class="section-inner">
+      <div class="leadership__head">
+        <h2 class="leadership__title">Meet the Leadership</h2>
+      </div>
+
+      <div class="spotlight">
+        <div>
+          <h3 class="spotlight__name">Pastor Olumide Emmanuel</h3>
+          <p class="spotlight__bio" id="spotlightBio">
+            Pastor Olumide Emmanuel has been the heart and soul of Calvary Bible Church for over 35 years. As the
+            founding Overseer, he has transformed a small gathering into a vibrant, Bible-centered community where
+            members are inspired to live out their faith as true value creators. He is a prolific author with more than
+            100 books to his name, and an esteemed speaker in demand globally. His teachings emphasize practical
+            applications of faith, encouraging people to become resilient, purpose-driven leaders who address real-world
+            challenges with integrity and hope. Under his leadership, Calvary Bible Church thrives as a beacon of light
+            in the city. Pastor Emmanuel continues to foster a culture of empowerment and growth, equipping each member
+            to fulfill their God-given purpose and make a meaningful impact in their communities.
+          </p>
+          <button type="button" class="spotlight__more" id="spotlightMore">Read more</button>
+          <a href="/about/#leaders" class="spotlight__btn">See All Our Leaders</a>
+        </div>
+
+        <div class="spotlight__photo">
+          <img src="https://www.cbcnigeria.org/homepage-leadership-overseers-image.jpg" alt="Pastor Olumide Emmanuel">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="worship">
+    <div class="section-inner">
+      <div class="worship__head">
+        <h2 class="worship__title">Worship With Us</h2>
+      </div>
+
+      <div class="worship__grid">
+        <div class="wcard">
+          <div class="wcard__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 3v6M9 6h6" stroke="#F7941D" stroke-width="1.8" stroke-linecap="round" />
+              <path d="M6 21v-8a6 6 0 0 1 12 0v8" stroke="#F7941D" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3 class="wcard__name">Foundations &amp; Leadership Service</h3>
+          <p class="wcard__desc">A focused gathering for growth in discipleship and leadership formation.</p>
+          <div class="wcard__meta">
+            <span class="wcard__time">9:00 AM</span>
+            <span class="wcard__day">Sundays</span>
+          </div>
+        </div>
+
+        <div class="wcard">
+          <div class="wcard__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 18c3-4 6-4 8 0s5 4 8 0" stroke="#F7941D" stroke-width="1.8" stroke-linecap="round" />
+              <path d="M12 4v10" stroke="#F7941D" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3 class="wcard__name">Celebration Service</h3>
+          <p class="wcard__desc">Our main gathering, featuring worship, teaching, and community for the whole family.
+          </p>
+          <div class="wcard__meta">
+            <span class="wcard__time">11:00 AM</span>
+            <span class="wcard__day">Sundays</span>
+          </div>
+        </div>
+
+        <div class="wcard">
+          <div class="wcard__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"
+                stroke="#F7941D" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3 class="wcard__name">School of the Spirit</h3>
+          <p class="wcard__desc">Midweek teaching and prayer for deeper spiritual formation.</p>
+          <div class="wcard__meta">
+            <span class="wcard__time">7:00 PM</span>
+            <span class="wcard__day">Wednesdays</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="findus">
+    <div class="findus__card">
+      <div>
+        <p class="findus__addr">Unit 201, 50 Steeles Avenue East, Milton, ON L9T 4W9, Canada</p>
+        <a href="https://maps.google.com" target="_blank" rel="noopener" class="findus__link">Find us on Google Maps
+          &rarr;</a>
+      </div>
+      <div class="findus__art">
+        <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#14110f" stroke-width="2.5" stroke-linejoin="round">
+            <polygon points="40,110 130,70 220,110 130,150" fill="#8a7bd8" />
+            <polygon points="40,110 130,150 130,190 40,150" fill="#7267bb" />
+            <polygon points="130,150 220,110 220,150 130,190" fill="#6a5fae" />
+            <polyline points="70,120 110,102 150,120 190,102" fill="none" stroke="#f2a6ad" stroke-width="6"
+              stroke-linecap="round" opacity="0.9" />
+          </g>
+          <g>
+            <path d="M130,10 C110,10 96,24 96,44 C96,66 130,100 130,100 C130,100 164,66 164,44 C164,24 150,10 130,10 Z"
+              fill="#9ee06a" stroke="#14110f" stroke-width="2.5" />
+            <circle cx="130" cy="44" r="14" fill="#F3E9D2" stroke="#14110f" stroke-width="2.5" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="prayer">
+    <div class="prayer__card">
+      <div>
+        <div class="prayer__dot"></div>
+        <h2 class="prayer__title">God Answers Prayers</h2>
+        <p class="prayer__desc">Prayer isn't our backup plan; it's our first move. &ldquo;Call to me and I will
+          answer you&rdquo; (Jeremiah 33:3). We believe God responds, in love, in power, and in His time.</p>
+        <a href="#" class="prayer__btn">Submit Prayer Request</a>
+      </div>
+      <div class="prayer__art">
+        <img
+          src="https://yt3.ggpht.com/gDYUrRB72YI0VTZjaZbB1b1JKcPl0PRKWY-sG8WlSZCo8ItKqa_EZkYwDLbeAjxC7q2xCWAFfVmI=s800-c-fcrop64=1,199f0000e660ffff-rw-nd-v1"
+          alt="Hands folded in prayer">
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="testimonials__head">
+      <div>
+        <h2 class="testimonials__title">Stories from our church family.</h2>
+      </div>
+      <a href="#" class="testimonials__btn">Submit Your Testimonial</a>
+    </div>
+
+    <div class="testimonials__slider">
+      <div class="testimonials__track">
+        <div class="testimony">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">We walked in as strangers and walked out feeling like we'd found family. That hasn't changed in three years.</p>
+          <span class="testimony__name">Marie Thibault</span>
+          <span class="testimony__role">Member since 2022</span>
+        </div>
+        <div class="testimony">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">The kids' ministry team knows my children by name. That kind of care is rare, and it's why we stay.</p>
+          <span class="testimony__name">David &amp; Priya Osei</span>
+          <span class="testimony__role">Parents of three</span>
+        </div>
+        <div class="testimony">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">I came for one service out of curiosity. Two years later, I'm leading a community group of my own.</p>
+          <span class="testimony__name">Samuel Nguyen</span>
+          <span class="testimony__role">Community Group Leader</span>
+        </div>
+        <!-- duplicate set for seamless loop -->
+        <div class="testimony" aria-hidden="true">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">We walked in as strangers and walked out feeling like we'd found family. That hasn't changed in three years.</p>
+          <span class="testimony__name">Marie Thibault</span>
+          <span class="testimony__role">Member since 2022</span>
+        </div>
+        <div class="testimony" aria-hidden="true">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">The kids' ministry team knows my children by name. That kind of care is rare, and it's why we stay.</p>
+          <span class="testimony__name">David &amp; Priya Osei</span>
+          <span class="testimony__role">Parents of three</span>
+        </div>
+        <div class="testimony" aria-hidden="true">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">I came for one service out of curiosity. Two years later, I'm leading a community group of my own.</p>
+          <span class="testimony__name">Samuel Nguyen</span>
+          <span class="testimony__role">Community Group Leader</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="connect" id="connect">
+    <div class="connect__card">
+      <div>
+        <h2 class="connect__title">Let's Connect</h2>
+        <p class="connect__desc">Planning a visit, or just have a question? Send us a note and someone from our team
+          will follow up with you personally.</p>
+      </div>
+
+      <form class="connect__form" action="#" method="POST">
+        <div class="connect__field">
+          <label for="cName">Full Name</label>
+          <input type="text" id="cName" name="name" placeholder="Jane Doe" required>
+        </div>
+        <div class="connect__field">
+          <label for="cEmail">Email Address</label>
+          <input type="email" id="cEmail" name="email" placeholder="jane@email.com" required>
+        </div>
+        <div class="connect__field">
+          <label for="cMsg">Message</label>
+          <textarea id="cMsg" name="message" placeholder="I'd love to know more about..."></textarea>
+        </div>
+        <button type="submit" class="connect__submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="section-inner footer__top">
+      <div class="footer__brand">
+        <a href="/"><img src="https://www.cbcnigeria.org/logo-white.png" alt="Calvary Bible Church" width="120px" height="auto"></a>
+        <p>Followers of Jesus equipping others to be followers of Jesus. Come as you are.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="#">Service Times</a></li>
+          <li><a href="#">Location</a></li>
+          <li><a href="#">What to Expect</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="/ministries">Ministries</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/give">Give</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">Unit 201, 50 Steeles Avenue East, Milton, ON L9T 4W9, Canada</a></li>
+          <li><a href="#">hello@calvarybible.church</a></li>
+          <li><a href="#">(555) 010-2200</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-inner footer__bottom">
+      <span>&copy; 2026 Calvary Bible Church. All rights reserved.</span>
+      <span>Privacy Policy &nbsp;&middot;&nbsp; Terms</span>
+    </div>
+  </footer>
+
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <nav class="nav-drawer" id="navDrawer" aria-hidden="true">
+    <div class="nav-drawer__top">
+      <span class="nav-drawer__brand">Calvary Bible Church</span>
+      <button class="nav-drawer__close" id="navClose" aria-label="Close menu">&times;</button>
+    </div>
+    <ul class="nav-drawer__list">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/events">Events</a></li>
+      <li><a href="/minstries">Ministries</a></li>
+      <li><a href="/give">Give</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="nav-drawer__footer">
+      <a href="https://www.youtube.com/@cbcnigeria6960/streams" class="btn btn--outline">Watch Live</a>
+      <a href="#connect" class="btn btn--solid">I'm New</a>
+    </div>
+  </nav>
+
+  <script>
+    (function () {
+      var menuToggle = document.getElementById('menuToggle');
+      var toggleKnob = menuToggle.querySelector('.menu__toggle');
+      var drawer = document.getElementById('navDrawer');
+      var overlay = document.getElementById('navOverlay');
+      var closeBtn = document.getElementById('navClose');
+
+      function openMenu() {
+        drawer.classList.add('is-open');
+        overlay.classList.add('is-open');
+        toggleKnob.classList.add('is-active');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        drawer.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('nav-open');
+        closeBtn.focus();
+      }
+      function closeMenu() {
+        drawer.classList.remove('is-open');
+        overlay.classList.remove('is-open');
+        toggleKnob.classList.remove('is-active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.focus();
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('nav-open');
+      }
+      function toggleMenu() {
+        drawer.classList.contains('is-open') ? closeMenu() : openMenu();
+      }
+
+      menuToggle.addEventListener('click', toggleMenu);
+      menuToggle.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+      });
+      overlay.addEventListener('click', closeMenu);
+      closeBtn.addEventListener('click', closeMenu);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+
+    (function () {
+      var bio = document.getElementById('spotlightBio');
+      var btn = document.getElementById('spotlightMore');
+      if (!bio || !btn) return;
+      btn.addEventListener('click', function () {
+        var expanded = bio.classList.toggle('is-expanded');
+        btn.textContent = expanded ? 'Read less' : 'Read more';
+      });
+    })();
+
+    (function () {
+      var container = document.getElementById('welcomeVideo');
+      var playBtn = document.getElementById('welcomePlay');
+      if (!container || !playBtn) return;
+
+      playBtn.addEventListener('click', function () {
+        var videoId = container.getAttribute('data-video-id');
+        var iframe = document.createElement('iframe');
+        iframe.src = "https://www.youtube.com/embed/" + videoId +
+          "?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&cc_load_policy=0";
+        iframe.title = "Welcome to the Trucalms Family";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.allowFullscreen = true;
+        container.appendChild(iframe);
+        container.classList.add('is-playing');
+      });
+    })();
+  </script>
+
+</body>
+
+</html>

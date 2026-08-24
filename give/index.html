@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="https://www.cbcnigeria.org/icon.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Give - Calvary Bible Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <style>
+
+    :root {
+      --pad-x: clamp(60px, 4vw, 40px);
+      --pad-y: clamp(20px, 4vw, 40px);
+      --white: #ffffff;
+      --overlay-top: rgba(10, 10, 10, 0.05);
+      --overlay-bottom: rgba(8, 8, 8, 0.62);
+
+      --brand-orange: #F7941D;
+      --brand-orange-light: #FBB03B;
+      --brand-orange-dark: #D9720F;
+      --brand-gradient: linear-gradient(135deg, var(--brand-orange), var(--brand-orange-light));
+
+      --ink: #14110f;
+      --ink-soft: #5c574f;
+      --ink-mute: #6b6560;
+      --ink-faint: #948d82;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    a { color: inherit; }
+
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+
+    /* ---------- Top bar (reused on every page) ---------- */
+    .topbar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: var(--pad-y) var(--pad-x);
+      margin-bottom: var(--pad-x)
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: capitalize;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .menu__toggle {
+      width: 40px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      position: relative;
+    }
+    .menu__toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    .menu__toggle.is-active { background: rgba(255, 255, 255, 0.4); }
+    .menu__toggle.is-active::after { left: 22px; }
+
+    .menu__hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 26px;
+      height: 20px;
+    }
+    .menu__hamburger .bar {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform .3s ease, opacity .3s ease;
+    }
+    .menu[aria-expanded="true"] .menu__hamburger .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu[aria-expanded="true"] .menu__hamburger .bar:nth-child(2) { opacity: 0; }
+    .menu[aria-expanded="true"] .menu__hamburger .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 780px) {
+      :root {--pad-x: clamp(20px, 4vw, 40px);}
+      .menu__label, .menu__toggle { display: none; }
+      .menu__hamburger { display: flex; }
+    }
+
+    /* ---------- Nav drawer ---------- */
+    .nav-overlay {
+      position: fixed; inset: 0;
+      background: rgba(8, 8, 8, 0.55);
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s ease;
+      z-index: 40;
+    }
+    .nav-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+    .nav-drawer {
+      position: fixed;
+      top: 0; right: -100%;
+      height: 100vh;
+      width: min(340px, 86vw);
+      background: #14110f;
+      color: #fff;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      padding: var(--pad-y) var(--pad-x);
+      transition: right .4s cubic-bezier(.16, .8, .24, 1);
+      box-shadow: -20px 0 60px rgba(0, 0, 0, 0.35);
+    }
+    .nav-drawer.is-open { right: 0; }
+
+    .nav-drawer__top { display: flex; align-items: center; justify-content: space-between; }
+    .nav-drawer__brand { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; opacity: 0.85; }
+    .nav-drawer__close {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: transparent;
+      color: #fff;
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s ease;
+    }
+    .nav-drawer__close:hover { background: rgba(255, 255, 255, 0.12); }
+
+    .nav-drawer__list {
+      list-style: none;
+      margin: clamp(36px, 8vh, 64px) 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .nav-drawer__list a {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      opacity: 0.92;
+      transition: opacity .15s ease, transform .15s ease, color .15s ease;
+    }
+    .nav-drawer__list a:hover { opacity: 1; transform: translateX(4px); }
+    .nav-drawer__list a.is-active { color: var(--brand-orange-light); opacity: 1; }
+
+    .nav-drawer__footer { margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
+    .nav-drawer__footer .btn { width: 100%; }
+
+    body.nav-open { overflow: hidden; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nav-drawer, .nav-overlay { transition: none; }
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 26px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: opacity .15s ease;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn--outline { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.9); }
+    .btn--solid { background: var(--brand-gradient); color: #fff; }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 15px 30px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: 999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: box-shadow .15s ease, transform .15s ease, filter .15s ease;
+    }
+    .pill-btn--brand { background: var(--brand-gradient); color: #fff; box-shadow: 0 10px 24px rgba(217,114,15,0.3); }
+    .pill-btn--brand:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .pill-btn--light { background: #F1EFEA; color: var(--ink); box-shadow: 0 6px 18px rgba(20,17,15,0.08); }
+    .pill-btn--light:hover { box-shadow: 0 8px 22px rgba(20,17,15,0.14); transform: translateY(-1px); }
+    .pill-btn--dark { background: var(--ink); color: #fff; }
+    .pill-btn--dark:hover { opacity: 0.85; }
+    .pill-btn--outline-dark { background: transparent; color: var(--ink); border: 1.5px solid rgba(20,17,15,0.25); }
+    .pill-btn--outline-dark:hover { background: rgba(20,17,15,0.05); }
+
+    /* ---------- Page banner (inner pages) ---------- */
+    .page-banner {
+      background: #14110f;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-banner::after {
+      content: "";
+      position: absolute;
+      right: -120px; top: -120px;
+      width: 360px; height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(247,148,29,0.35), transparent 70%);
+      pointer-events: none;
+    }
+    .page-banner__content {
+      position: relative;
+      z-index: 2;
+      padding: clamp(16px, 4vw, 32px) var(--pad-x) clamp(56px, 9vw, 96px);
+      max-width: 780px;
+    }
+    .page-banner__title {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+      margin: 0 0 18px;
+    }
+    .page-banner__desc {
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.72);
+      margin: 0;
+      max-width: 620px;
+    }
+
+    /* ---------- Shared section eyebrow ---------- */
+    .eyebrow-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brand-orange);
+      margin: 0 0 18px;
+    }
+    .eyebrow-line::before { content: ""; width: 28px; height: 1px; background: var(--brand-orange); }
+
+    /* ---------- Footer ---------- */
+    .site-footer {
+      background: #0c0a09;
+      color: rgba(255, 255, 255, 0.8);
+      padding: clamp(48px, 7vw, 72px) var(--pad-x) clamp(24px, 4vw, 32px);
+    }
+    .footer__top {
+      display: grid;
+      grid-template-columns: 1.3fr repeat(3, 1fr);
+      gap: clamp(28px, 4vw, 48px);
+      padding-bottom: clamp(32px, 5vw, 48px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .footer__brand { display: flex; flex-direction: column; gap: 14px; }
+    .footer__brand .logo { width: 34px; height: 34px; }
+    .footer__brand p { font-size: 0.88rem; line-height: 1.6; color: rgba(255, 255, 255, 0.55); max-width: 260px; margin: 0; }
+    .footer__col h4 {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5); margin: 0 0 16px;
+    }
+    .footer__col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+    .footer__col a { color: rgba(255, 255, 255, 0.82); text-decoration: none; font-size: 0.92rem; }
+    .footer__col a:hover { opacity: 0.7; }
+    .footer__bottom {
+      padding-top: clamp(20px, 3vw, 28px);
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 12px; font-size: 0.8rem; color: rgba(255, 255, 255, 0.45);
+    }
+    @media (max-width: 780px) { .footer__top { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer__top { grid-template-columns: 1fr; } }
+
+    /* ---------- Generic content helpers ---------- */
+    .section { padding: clamp(56px, 9vw, 100px) var(--pad-x); }
+    .section--tint { background: #F6F4EF; }
+    .section--cream { background: #ECEAE4; }
+    .section-head { max-width: 680px; margin: 0 0 clamp(40px, 6vw, 64px); }
+    .section-title {
+      font-weight: 800; letter-spacing: -0.02em; line-height: 1.1;
+      font-size: clamp(1.9rem, 3.6vw, 2.8rem); margin: 0;
+    }
+    .section-desc { font-size: 1rem; line-height: 1.7; color: var(--ink-soft); margin: 14px 0 0; max-width: 620px; }
+
+
+    .give-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 4vw, 40px);
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .give-card { background: #fff; border: 1px solid rgba(20,17,15,0.1); border-radius: 18px; padding: clamp(28px, 4vw, 40px); }
+    .give-card__icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(247,148,29,0.12);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 22px;
+    }
+    .give-card__title { font-weight: 700; font-size: 1.25rem; margin: 0 0 12px; }
+    .give-card__desc { font-size: 0.95rem; line-height: 1.65; color: var(--ink-soft); margin: 0 0 24px; }
+
+    .give-hero {
+      max-width: 1280px; margin: 0 auto clamp(48px, 7vw, 72px);
+      background: #14110f;
+      color: #fff;
+      border-radius: 20px;
+      padding: clamp(32px, 5vw, 56px);
+      text-align: center;
+    }
+    .give-hero h2 { font-size: clamp(1.8rem, 3.2vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 16px; }
+    .give-hero p { font-size: 1rem; line-height: 1.65; color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto 28px; }
+
+    .give-details { max-width: 1280px; margin: clamp(40px,6vw,64px) auto 0; background: #F6F4EF; border-radius: 16px; padding: clamp(28px,4vw,40px); }
+    .give-details dl { display: grid; grid-template-columns: 160px 1fr; gap: 12px 20px; margin: 0; }
+    .give-details dt { font-weight: 700; color: var(--ink); font-size: 0.9rem; }
+    .give-details dd { margin: 0; color: var(--ink-soft); font-size: 0.9rem; }
+
+    @media (max-width: 780px) { .give-grid { grid-template-columns: 1fr; } .give-details dl { grid-template-columns: 1fr; } }
+
+  </style>
+</head>
+
+<body>
+
+  <header class="page-banner">
+    <div class="topbar">
+      <a href="/"><img src="https://www.cbcnigeria.org/logo-white.png" alt="Calvary Bible Church" width="auto" height="50px"></a>
+      <div class="menu" id="menuToggle" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="navDrawer">
+        <span class="menu__label">Menu</span>
+        <span class="menu__toggle"></span>
+        <span class="menu__hamburger" aria-hidden="true">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </span>
+      </div>
+    </div>
+    <div class="page-banner__content">
+      <h1 class="page-banner__title">Give Cheerfully</h1>
+      <p class="page-banner__desc">Your generosity fuels everything we do, from weekly services to community outreach. Thank you for sowing into this work.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="give-hero">
+        <h2>&ldquo;God loves a cheerful giver.&rdquo;</h2>
+        <p>2 Corinthians 9:7. Every gift, big or small, helps us continue reaching our city and beyond
+        with the love of Christ.</p>
+        <a href="#give-online" class="pill-btn pill-btn--brand">Give Online</a>
+      </div>
+
+      <div class="section-head">
+        <h2 class="section-title">Choose What Works for You</h2>
+      </div>
+
+      <div class="give-grid" id="give-online">
+        <div class="give-card">
+          <div class="give-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="6" width="18" height="13" rx="2" stroke="#F7941D" stroke-width="1.8"/>
+              <path d="M3 10h18" stroke="#F7941D" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <h3 class="give-card__title">Give Online</h3>
+          <p class="give-card__desc">Make a one-time or recurring gift securely from your phone or computer in
+          just a few minutes.</p>
+          <a href="#" class="pill-btn pill-btn--dark">Donate Now</a>
+        </div>
+        <div class="give-card">
+          <div class="give-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 10h16M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3M5 10l1.5 9h11L19 10" stroke="#F7941D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="give-card__title">E-Transfer</h3>
+          <p class="give-card__desc">Send an Interac e-Transfer directly to our church account. Details
+          below, or contact the office for help.</p>
+          <a href="mailto:give@calvarybible.church" class="pill-btn pill-btn--outline-dark">Email for Details</a>
+        </div>
+      </div>
+
+      <div class="give-details">
+        <dl>
+          <dt>E-Transfer to</dt>
+          <dd>give@calvarybible.church</dd>
+          <dt>In Person</dt>
+          <dd>Offering boxes are available at every Sunday service.</dd>
+          <dt>By Mail</dt>
+          <dd>120 King Street West, Toronto, ON M5X 1A9</dd>
+          <dt>Questions?</dt>
+          <dd>Reach out via our <a href="/contact" style="color: var(--ink); font-weight:600;">Contact page</a> and our team will be glad to help.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="section-inner footer__top">
+      <div class="footer__brand">
+        <a href="/"><img src="https://www.cbcnigeria.org/logo-white.png" alt="Calvary Bible Church" width="120px" height="auto"></a>
+        <p>Followers of Jesus equipping others to be followers of Jesus. Come as you are.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="/#worship">Service Times</a></li>
+          <li><a href="/contact">Location</a></li>
+          <li><a href="/about">What to Expect</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="/ministries">Ministries</a></li>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/give">Give</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="/contact">120 King Street West, Toronto, ON</a></li>
+          <li><a href="mailto:hello@calvarybible.church">hello@calvarybible.church</a></li>
+          <li><a href="tel:+15550102200">(555) 010-2200</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-inner footer__bottom">
+      <span>&copy; 2026 Calvary Bible Church. All rights reserved.</span>
+      <span>Privacy Policy &nbsp;&middot;&nbsp; Terms</span>
+    </div>
+  </footer>
+
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <nav class="nav-drawer" id="navDrawer" aria-hidden="true">
+    <div class="nav-drawer__top">
+      <span class="nav-drawer__brand">Calvary Bible Church</span>
+      <button class="nav-drawer__close" id="navClose" aria-label="Close menu">&times;</button>
+    </div>
+    <ul class="nav-drawer__list">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/events">Events</a></li>
+      <li><a href="/ministries">Ministries</a></li>
+      <li><a href="/give" class="is-active">Give</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="nav-drawer__footer">
+      <a href="#" class="btn btn--outline">Watch Live</a>
+      <a href="/give" class="btn btn--solid">Give</a>
+    </div>
+  </nav>
+
+  <script>
+    (function () {
+      var menuToggle = document.getElementById('menuToggle');
+      var toggleKnob = menuToggle.querySelector('.menu__toggle');
+      var drawer = document.getElementById('navDrawer');
+      var overlay = document.getElementById('navOverlay');
+      var closeBtn = document.getElementById('navClose');
+
+      function openMenu() {
+        drawer.classList.add('is-open');
+        overlay.classList.add('is-open');
+        toggleKnob.classList.add('is-active');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        drawer.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('nav-open');
+        closeBtn.focus();
+      }
+      function closeMenu() {
+        drawer.classList.remove('is-open');
+        overlay.classList.remove('is-open');
+        toggleKnob.classList.remove('is-active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.focus();
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('nav-open');
+      }
+      function toggleMenu() {
+        drawer.classList.contains('is-open') ? closeMenu() : openMenu();
+      }
+
+      menuToggle.addEventListener('click', toggleMenu);
+      menuToggle.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+      });
+      overlay.addEventListener('click', closeMenu);
+      closeBtn.addEventListener('click', closeMenu);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
