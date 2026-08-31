@@ -43,6 +43,7 @@
       position: relative;
       overflow-x: hidden;
       max-width: 100%;
+      scroll-behavior: smooth;
     }
 
     body {
@@ -202,8 +203,9 @@
     .nav-drawer__brand {
       font-size: 0.85rem;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.5em;
       opacity: 0.85;
+      text-transform: uppercase;
     }
 
     .nav-drawer__close {
@@ -961,7 +963,7 @@
           <p>Our outreach teams carry the Gospel into hospitals, neighborhoods, and communities that need it
             most. We believe faith should be expressed in word and in deed, and that every believer belongs,
             grows, and carries a testimony that endures.</p>
-          <a href="contact.html" class="pill-btn pill-btn--brand">Plan Your Visit</a>
+          <a href="/contact/?topic=general" class="pill-btn pill-btn--brand">Plan Your Visit</a>
         </div>
         <div class="about-story__photo">
           <img src="https://www.cbcnigeria.org/sneak-peek-image-3.jpg"
@@ -1141,7 +1143,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="leaders">
     <div class="section-inner">
       <div class="section-head">
         <h2 class="section-title">Meet the Leadership</h2>
@@ -1158,7 +1160,7 @@
             address real-world challenges with integrity and hope.
           </p>
           <button type="button" class="spotlight__more" id="spotlightMore">Read more</button>
-          <a href="#" class="pill-btn pill-btn--light">See All Our Leaders</a>
+          <!-- <a href="#" class="pill-btn pill-btn--light">See All Our Leaders</a> -->
         </div>
         <div class="spotlight__photo">
           <img src="https://www.cbcnigeria.org/homepage-leadership-overseers-image.jpg" alt="Pastor Olumide Emmanuel">
@@ -1177,8 +1179,8 @@
         <h4>Visit</h4>
         <ul>
           <li><a href="/#worship">Service Times</a></li>
-          <li><a href="contact.html">Location</a></li>
-          <li><a href="about.html">What to Expect</a></li>
+          <li><a href="/contact">Location</a></li>
+          <li><a href="/about">About Trucalms</a></li>
         </ul>
       </div>
       <div class="footer__col">
@@ -1192,9 +1194,11 @@
       <div class="footer__col">
       <h4>Contact</h4>
         <ul>
-          <li><a href="/contact">Unit 201, 50 Steeles Avenue East, Milton, ON L9T 4W9, Canada</a></li>
-          <li><a href="mailto:hello@trucalms.ca">hello@trucalms.ca</a></li>
-          <li><a href="tel:+15550102200">(555) 010-2200</a></li>
+          <li><a
+            href="https://www.google.com/maps/search/?api=1&query=Unit+201%2C+50+Steeles+Avenue+East%2C+Milton%2C+ON+L9T+4W9%2C+Canada">Unit
+            201, 50 Steeles Avenue East, Milton, ON L9T 4W9, Canada</a></li>
+          <li><a href="mailto:info@trucalms.ca">info@trucalms.ca</a></li>
+          <li><a href="tel:+14372472866">+1 (437) 247-2866</a></li>
         </ul>
       </div>
     </div>

@@ -40,6 +40,7 @@
       position: relative;
       overflow-x: hidden;
       max-width: 100%;
+      scroll-behavior: smooth;
     }
 
     body {
@@ -498,6 +499,7 @@
         aspect-ratio: 4 / 3.4;
       }
     }
+
     /* ================================================================
      Next section — About (inserted as 2nd section, right after hero)
      ================================================================ */
@@ -1330,7 +1332,8 @@
     }
 
     .connect__field input,
-    .connect__field textarea {
+    .connect__field textarea,
+    .connect__field select {
       font-family: inherit;
       font-size: 0.95rem;
       padding: 14px 16px;
@@ -1341,7 +1344,8 @@
     }
 
     .connect__field input:focus,
-    .connect__field textarea:focus {
+    .connect__field textarea:focus,
+    .connect__field select:focus {
       outline: none;
       border-color: var(--brand-orange);
     }
@@ -1615,7 +1619,8 @@
             members are inspired to live out their faith as true value creators. He is a prolific author with more than
             100 books to his name, and an esteemed speaker in demand globally. His teachings emphasize practical
             applications of faith, encouraging people to become resilient, purpose-driven leaders who address real-world
-            challenges with integrity and hope. Under his leadership, Truth of Calvary Ministries thrives as a beacon of light
+            challenges with integrity and hope. Under his leadership, Truth of Calvary Ministries thrives as a beacon of
+            light
             in the city. Pastor Emmanuel continues to foster a culture of empowerment and growth, equipping each member
             to fulfill their God-given purpose and make a meaningful impact in their communities.
           </p>
@@ -1636,7 +1641,7 @@
         <h2 class="worship__title">Worship With Us</h2>
       </div>
 
-      <div class="worship__grid">
+      <div class="worship__grid" id="worship">
         <div class="wcard">
           <div class="wcard__icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1720,7 +1725,8 @@
         <h2 class="prayer__title">God Answers Prayers</h2>
         <p class="prayer__desc">Prayer isn't our backup plan; it's our first move. &ldquo;Call to me and I will
           answer you&rdquo; (Jeremiah 33:3). We believe God responds, in love, in power, and in His time.</p>
-        <a href="#" class="prayer__btn">Submit Prayer Request</a>
+        <!-- Prayer section -->
+        <a href="#connect" class="prayer__btn" data-topic="prayer">Submit Prayer Request</a>
       </div>
       <div class="prayer__art">
         <img
@@ -1735,53 +1741,124 @@
       <div>
         <h2 class="testimonials__title">Stories from our church family.</h2>
       </div>
-      <a href="#" class="testimonials__btn">Submit Your Testimonial</a>
+      <!-- Testimonials section -->
+      <a href="#connect" class="testimonials__btn" data-topic="testimony">Submit Your Testimonial</a>
     </div>
 
     <div class="testimonials__slider">
       <div class="testimonials__track">
         <div class="testimony">
           <p class="testimony__mark">&ldquo;</p>
-          <p class="testimony__quote">We walked in as strangers and walked out feeling like we'd found family. That
-            hasn't changed in three years.</p>
-          <span class="testimony__name">Marie Thibault</span>
+          <p class="testimony__quote">I moved to Milton not knowing a single soul. Someone from the welcome team texted
+            me that same Sunday night just to check in. Eight months later she's one of my closest friends.</p>
+          <span class="testimony__name">Chidinma Okafor</span>
+          <span class="testimony__role">Member since 2024</span>
+        </div>
+        <div class="testimony">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">My son has autism and I was terrified to bring him to a new church. The kids'
+            ministry team asked me what he needed before I even had to explain it.</p>
+          <span class="testimony__name">Grace &amp; Kwame Mensah</span>
+          <span class="testimony__role">Parents of two</span>
+        </div>
+        <div class="testimony">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">I sat in the back row for four Sundays before anyone even knew my name. By the
+            fifth, I was helping set up chairs. Now I run our Wednesday group.</p>
+          <span class="testimony__name">Marcus Bellefeuille</span>
+          <span class="testimony__role">Community Group Leader</span>
+        </div>
+        <div class="testimony">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">After my husband passed, I stopped going anywhere for almost a year. A couple
+            from this church just kept showing up at my door with soup, no pressure, until I was ready.</p>
+          <span class="testimony__name">Eleanor Whitfield</span>
+          <span class="testimony__role">Member since 2019</span>
+        </div>
+        <div class="testimony">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">I'm the guy who used to argue with every sermon in his head. Pastor Emmanuel
+            actually invited me to argue with him over coffee instead. That's when things started to shift.</p>
+          <span class="testimony__name">Femi Adeyemi</span>
+          <span class="testimony__role">Member since 2023</span>
+        </div>
+        <div class="testimony">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">We lost almost everything when my restaurant closed. Nobody here treated it like
+            a tragedy to whisper about. They just asked how they could help this week.</p>
+          <span class="testimony__name">Rosa &amp; Miguel Fernandes</span>
+          <span class="testimony__role">Members since 2021</span>
+        </div>
+        <div class="testimony">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">I came to Canada three years ago and this was the first room where nobody made me
+            feel like a guest. My accent, my food, my questions, all of it belonged here.</p>
+          <span class="testimony__name">Priya Ramachandran</span>
           <span class="testimony__role">Member since 2022</span>
         </div>
         <div class="testimony">
           <p class="testimony__mark">&ldquo;</p>
-          <p class="testimony__quote">The kids' ministry team knows my children by name. That kind of care is rare, and
-            it's why we stay.</p>
-          <span class="testimony__name">David &amp; Priya Osei</span>
-          <span class="testimony__role">Parents of three</span>
-        </div>
-        <div class="testimony">
-          <p class="testimony__mark">&ldquo;</p>
-          <p class="testimony__quote">I came for one service out of curiosity. Two years later, I'm leading a community
-            group of my own.</p>
-          <span class="testimony__name">Samuel Nguyen</span>
-          <span class="testimony__role">Community Group Leader</span>
+          <p class="testimony__quote">At 74 I figured I'd aged out of starting over anywhere. The young couples in my
+            group treat me like family, not like the old man in the corner.</p>
+          <span class="testimony__name">Walter Osei-Bonsu</span>
+          <span class="testimony__role">Member since 2020</span>
         </div>
         <!-- duplicate set for seamless loop -->
         <div class="testimony" aria-hidden="true">
           <p class="testimony__mark">&ldquo;</p>
-          <p class="testimony__quote">We walked in as strangers and walked out feeling like we'd found family. That
-            hasn't changed in three years.</p>
-          <span class="testimony__name">Marie Thibault</span>
+          <p class="testimony__quote">I moved to Milton not knowing a single soul. Someone from the welcome team texted
+            me that same Sunday night just to check in. Eight months later she's one of my closest friends.</p>
+          <span class="testimony__name">Chidinma Okafor</span>
+          <span class="testimony__role">Member since 2024</span>
+        </div>
+        <div class="testimony" aria-hidden="true">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">My son has autism and I was terrified to bring him to a new church. The kids'
+            ministry team asked me what he needed before I even had to explain it.</p>
+          <span class="testimony__name">Grace &amp; Kwame Mensah</span>
+          <span class="testimony__role">Parents of two</span>
+        </div>
+        <div class="testimony" aria-hidden="true">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">I sat in the back row for four Sundays before anyone even knew my name. By the
+            fifth, I was helping set up chairs. Now I run our Wednesday group.</p>
+          <span class="testimony__name">Marcus Bellefeuille</span>
+          <span class="testimony__role">Community Group Leader</span>
+        </div>
+        <div class="testimony" aria-hidden="true">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">After my husband passed, I stopped going anywhere for almost a year. A couple
+            from this church just kept showing up at my door with soup, no pressure, until I was ready.</p>
+          <span class="testimony__name">Eleanor Whitfield</span>
+          <span class="testimony__role">Member since 2019</span>
+        </div>
+        <div class="testimony" aria-hidden="true">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">I'm the guy who used to argue with every sermon in his head. Pastor Emmanuel
+            actually invited me to argue with him over coffee instead. That's when things started to shift.</p>
+          <span class="testimony__name">Femi Adeyemi</span>
+          <span class="testimony__role">Member since 2023</span>
+        </div>
+        <div class="testimony" aria-hidden="true">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">We lost almost everything when my restaurant closed. Nobody here treated it like
+            a tragedy to whisper about. They just asked how they could help this week.</p>
+          <span class="testimony__name">Rosa &amp; Miguel Fernandes</span>
+          <span class="testimony__role">Members since 2021</span>
+        </div>
+        <div class="testimony" aria-hidden="true">
+          <p class="testimony__mark">&ldquo;</p>
+          <p class="testimony__quote">I came to Canada three years ago and this was the first room where nobody made me
+            feel like a guest. My accent, my food, my questions, all of it belonged here.</p>
+          <span class="testimony__name">Priya Ramachandran</span>
           <span class="testimony__role">Member since 2022</span>
         </div>
         <div class="testimony" aria-hidden="true">
           <p class="testimony__mark">&ldquo;</p>
-          <p class="testimony__quote">The kids' ministry team knows my children by name. That kind of care is rare, and
-            it's why we stay.</p>
-          <span class="testimony__name">David &amp; Priya Osei</span>
-          <span class="testimony__role">Parents of three</span>
-        </div>
-        <div class="testimony" aria-hidden="true">
-          <p class="testimony__mark">&ldquo;</p>
-          <p class="testimony__quote">I came for one service out of curiosity. Two years later, I'm leading a community
-            group of my own.</p>
-          <span class="testimony__name">Samuel Nguyen</span>
-          <span class="testimony__role">Community Group Leader</span>
+          <p class="testimony__quote">At 74 I figured I'd aged out of starting over anywhere. The young couples in my
+            group treat me like family, not like the old man in the corner.</p>
+          <span class="testimony__name">Walter Osei-Bonsu</span>
+          <span class="testimony__role">Member since 2020</span>
         </div>
       </div>
     </div>
@@ -1805,6 +1882,15 @@
           <input type="email" id="cEmail" name="email" placeholder="jane@email.com" required>
         </div>
         <div class="connect__field">
+          <label for="cTopic">I'm Reaching Out About</label>
+          <select id="cTopic" name="topic">
+            <option value="general">General Inquiry</option>
+            <option value="visit">Planning a Visit</option>
+            <option value="prayer">Prayer Request</option>
+            <option value="testimony">Testimony</option>
+          </select>
+        </div>
+        <div class="connect__field">
           <label for="cMsg">Message</label>
           <textarea id="cMsg" name="message" placeholder="I'd love to know more about..."></textarea>
         </div>
@@ -1823,9 +1909,11 @@
       <div class="footer__col">
         <h4>Visit</h4>
         <ul>
-          <li><a href="#">Service Times</a></li>
-          <li><a href="#">Location</a></li>
-          <li><a href="#">What to Expect</a></li>
+          <li><a href="/#worship">Service Times</a></li>
+          <li><a
+              href="https://www.google.com/maps/search/?api=1&query=Unit+201%2C+50+Steeles+Avenue+East%2C+Milton%2C+ON+L9T+4W9%2C+Canada">Location</a>
+          </li>
+          <li><a href="/about">About Trucalms</a></li>
         </ul>
       </div>
       <div class="footer__col">
@@ -1839,9 +1927,11 @@
       <div class="footer__col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="#">Unit 201, 50 Steeles Avenue East, Milton, ON L9T 4W9, Canada</a></li>
-          <li><a href="#">hello@calvarybible.church</a></li>
-          <li><a href="#">(555) 010-2200</a></li>
+          <li><a
+              href="https://www.google.com/maps/search/?api=1&query=Unit+201%2C+50+Steeles+Avenue+East%2C+Milton%2C+ON+L9T+4W9%2C+Canada">Unit
+              201, 50 Steeles Avenue East, Milton, ON L9T 4W9, Canada</a></li>
+          <li><a href="mailto:info@trucalms.ca">info@trucalms.ca</a></li>
+          <li><a href="tel:+14372472866">+1 (437) 247-2866</a></li>
         </ul>
       </div>
     </div>
@@ -1868,7 +1958,7 @@
     </ul>
     <div class="nav-drawer__footer">
       <a href="https://www.youtube.com/@cbcnigeria6960/streams" class="btn btn--outline">Watch Live</a>
-      <a href="#connect" class="btn btn--solid">I'm New</a>
+      <a href="#connect" class="btn btn--solid" data-topic="general">I'm New</a>
     </div>
   </nav>
 
@@ -1938,6 +2028,19 @@
         iframe.allowFullscreen = true;
         container.appendChild(iframe);
         container.classList.add('is-playing');
+      });
+    })();
+    (function () {
+      var topicSelect = document.getElementById('cTopic');
+      var topicButtons = document.querySelectorAll('[data-topic]');
+      if (!topicSelect || !topicButtons.length) return;
+
+      topicButtons.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          topicSelect.value = this.getAttribute('data-topic');
+          document.getElementById('connect').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
       });
     })();
   </script>

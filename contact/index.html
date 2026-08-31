@@ -43,6 +43,7 @@
       position: relative;
       overflow-x: hidden;
       max-width: 100%;
+      scroll-behavior: smooth;
     }
 
     body {
@@ -177,7 +178,7 @@
       top: 0;
       right: -100%;
       height: 100vh;
-      height: 100dvh; 
+      height: 100dvh;
       width: min(340px, 86vw);
       background: #14110f;
       color: #fff;
@@ -202,8 +203,9 @@
     .nav-drawer__brand {
       font-size: 0.85rem;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.5em;
       opacity: 0.85;
+      text-transform: uppercase;
     }
 
     .nav-drawer__close {
@@ -673,7 +675,8 @@
     }
 
     .contact-form__field input,
-    .contact-form__field textarea {
+    .contact-form__field textarea,
+    .contact-form__field select {
       font-family: inherit;
       font-size: 0.95rem;
       padding: 14px 16px;
@@ -684,7 +687,8 @@
     }
 
     .contact-form__field input:focus,
-    .contact-form__field textarea:focus {
+    .contact-form__field textarea:focus,
+    .contact-form__field select:focus {
       outline: none;
       border-color: var(--brand-orange);
     }
@@ -692,6 +696,12 @@
     .contact-form__field textarea {
       resize: vertical;
       min-height: 130px;
+    }
+
+    .contact-form__field.is-highlighted select {
+      border-color: var(--brand-orange);
+      box-shadow: 0 0 0 3px rgba(247, 148, 29, 0.18);
+      transition: box-shadow .3s ease, border-color .3s ease;
     }
 
     @media (max-width: 780px) {
@@ -717,7 +727,8 @@
 
   <header class="page-banner">
     <div class="topbar">
-      <a href="/"><img src="https://www.cbcnigeria.org/logo-white.png" alt="Calvary Bible Church" width="auto" height="50px"></a>
+      <a href="/"><img src="https://www.cbcnigeria.org/logo-white.png" alt="Calvary Bible Church" width="auto"
+          height="50px"></a>
       <div class="menu" id="menuToggle" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false"
         aria-controls="navDrawer">
         <span class="menu__label">Menu</span>
@@ -785,7 +796,7 @@
             </div>
             <div>
               <p class="contact-info__label">Phone</p>
-              <p class="contact-info__value"><a href="tel:+15550102200">(555) 010-2200</a></p>
+              <p class="contact-info__value"><a href="tel:+14372472866">+1 (437) 247-2866</a></p>
             </div>
           </div>
           <div class="contact-info__item">
@@ -812,6 +823,22 @@
             <input type="email" id="cEmail" name="email" placeholder="jane@email.com" required>
           </div>
           <div class="contact-form__field">
+            <label for="cTopic">I'm Reaching Out About</label>
+            <select id="cTopic" name="topic">
+              <option value="">Select a Reason</option>
+              <option value="general">General Inquiry</option>
+              <option value="visit">Planning a Visit</option>
+              <option value="prayer">Prayer Request</option>
+              <option value="testimony">Testimony</option>
+              <option value="children">Children Ministry</option>
+              <option value="youth">Youth Ministry</option>
+              <option value="young">Young Adults Ministry</option>
+              <option value="men">Men's Ministry</option>
+              <option value="women">Women's Ministry</option>
+              <option value="group">Small Groups Ministry</option>
+            </select>
+          </div>
+          <div class="contact-form__field">
             <label for="cMsg">Message</label>
             <textarea id="cMsg" name="message" placeholder="I'd love to know more about..."></textarea>
           </div>
@@ -824,7 +851,8 @@
   <footer class="site-footer">
     <div class="section-inner footer__top">
       <div class="footer__brand">
-        <a href="/"><img src="https://www.cbcnigeria.org/logo-white.png" alt="Truth of Calvary Ministries" width="120px" height="auto"></a>
+        <a href="/"><img src="https://www.cbcnigeria.org/logo-white.png" alt="Truth of Calvary Ministries" width="120px"
+            height="auto"></a>
         <p>Followers of Jesus equipping others to be followers of Jesus. Come as you are.</p>
       </div>
       <div class="footer__col">
@@ -832,7 +860,7 @@
         <ul>
           <li><a href="/#worship">Service Times</a></li>
           <li><a href="/contact">Location</a></li>
-          <li><a href="/about">What to Expect</a></li>
+          <li><a href="/about">About Trucalms</a></li>
         </ul>
       </div>
       <div class="footer__col">
@@ -846,9 +874,11 @@
       <div class="footer__col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="/contact">Unit 201, 50 Steeles Avenue East, Milton, ON L9T 4W9, Canada</a></li>
-          <li><a href="mailto:hello@trucalms.ca">hello@trucalms.ca</a></li>
-          <li><a href="tel:+15550102200">(555) 010-2200</a></li>
+          <li><a
+            href="https://www.google.com/maps/search/?api=1&query=Unit+201%2C+50+Steeles+Avenue+East%2C+Milton%2C+ON+L9T+4W9%2C+Canada">Unit
+            201, 50 Steeles Avenue East, Milton, ON L9T 4W9, Canada</a></li>
+          <li><a href="mailto:info@trucalms.ca">info@trucalms.ca</a></li>
+          <li><a href="tel:+14372472866">+1 (437) 247-2866</a></li>
         </ul>
       </div>
     </div>
@@ -917,6 +947,22 @@
       closeBtn.addEventListener('click', closeMenu);
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeMenu();
+      });
+    })();
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var topic = params.get('topic');
+      var topicSelect = document.getElementById('cTopic');
+      if (!topic || !topicSelect) return;
+
+      var validValues = Array.prototype.map.call(topicSelect.options, function (o) { return o.value; });
+      if (validValues.indexOf(topic) === -1) return;
+
+      topicSelect.value = topic;
+      topicSelect.closest('.contact-form__field').classList.add('is-highlighted');
+
+      window.addEventListener('load', function () {
+        document.querySelector('.contact-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     })();
   </script>
